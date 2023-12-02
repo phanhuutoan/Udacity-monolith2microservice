@@ -1,5 +1,6 @@
 import {Sequelize} from 'sequelize-typescript';
 import {config} from './config/config';
+import { SequelizeConfig } from 'sequelize-typescript/lib/types/SequelizeConfig';
 
 
 export const sequelize = new Sequelize({
@@ -10,4 +11,10 @@ export const sequelize = new Sequelize({
 
   'dialect': config.dialect,
   'storage': ':memory:',
-});
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // added for compatibility with RDS
+    },
+  },
+} as SequelizeConfig );
