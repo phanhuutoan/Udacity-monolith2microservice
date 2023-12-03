@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: reverse-proxy-svc
+spec:
+  selector:
+    part: reverse-proxy
+  ports:
+    - protocol: TCP
+      port: 8181
+      targetPort: 8181
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reverse-proxy
+  labels:
+    part: reverse-proxy
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      part: reverse-proxy
+  template:
+    metadata:
+      labels:
+        part: reverse-proxy
+    spec:
+      containers:
+      - name: superknife0512/uda-reverse-proxy
+        image: superknife0512/uda-reverse-proxy
+        ports:
+        - containerPort: 8181
