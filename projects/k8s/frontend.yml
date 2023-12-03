@@ -7,8 +7,8 @@ spec:
     part: frontend
   ports:
     - protocol: TCP
-      port: 8100
-      targetPort: 8100
+      port: 80
+      targetPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -27,7 +27,7 @@ spec:
         part: frontend
     spec:
       containers:
-      - name: superknife0512/uda-micro-frontend
+      - name: uda-micro-frontend
         image: superknife0512/uda-micro-frontend
         ports:
-        - containerPort: 8100
+        - containerPort: 80

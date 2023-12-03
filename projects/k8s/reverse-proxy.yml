@@ -7,8 +7,8 @@ spec:
     part: reverse-proxy
   ports:
     - protocol: TCP
-      port: 8181
-      targetPort: 8181
+      port: 80
+      targetPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -27,7 +27,7 @@ spec:
         part: reverse-proxy
     spec:
       containers:
-      - name: superknife0512/uda-reverse-proxy
+      - name: uda-reverse-proxy
         image: superknife0512/uda-reverse-proxy
         ports:
-        - containerPort: 8181
+        - containerPort: 80
